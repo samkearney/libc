@@ -2748,7 +2748,7 @@ extern "C" {
     pub fn strerror_r(errnum: ::c_int, buf: *mut c_char, buflen: ::size_t) -> ::c_int;
 
     pub fn abs(i: ::c_int) -> ::c_int;
-    pub fn atof(s: *const ::c_char) -> ::c_double;
+    // pub fn atof(s: *const ::c_char) -> ::c_double;
     pub fn labs(i: ::c_long) -> ::c_long;
     pub fn rand() -> ::c_int;
     pub fn srand(seed: ::c_uint);
@@ -3272,6 +3272,10 @@ cfg_if! {
     if #[cfg(target_arch = "x86_64")] {
         mod x86_64;
         pub use self::x86_64::*;
+    }
+    else if #[cfg(target_arch = "x86")] {
+        mod x86;
+        pub use self::x86::*;
     }
     else if #[cfg(target_arch = "aarch64")] {
         mod aarch64;
